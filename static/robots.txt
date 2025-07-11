@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jaiminparmar.onrender.com/sitemap.xml

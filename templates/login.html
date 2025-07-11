@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>🔐 JAIMIN PARMAR | New Dream Website</title>
+  <link rel="icon" href="https://jaiminparmar.onrender.com/static/logo.png" type="image/png" />
+
+  <!-- ✅ SEO Meta -->
+  <meta name="description" content="JAIMIN PARMAR's Dream Website – a secure OTP login portal with smart tools.">
+  <meta name="keywords" content="OTP login, secure, email authentication, flask, jaimin parmar" />
+  <meta name="author" content="Jaimin Parmar" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://jaiminparmar.onrender.com/" />
+
+  <!-- ✅ Open Graph + Twitter -->
+  <meta property="og:title" content="🔐 JAIMIN PARMAR | Dream Website" />
+  <meta property="og:description" content="Secure OTP login portal with Password Manager and more tools." />
+  <meta property="og:image" content="https://jaiminparmar.onrender.com/static/logo.png" />
+  <meta property="og:url" content="https://jaiminparmar.onrender.com/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="JAIMIN PARMAR | Dream Website" />
+  <meta name="twitter:description" content="Explore JAIMIN's Dream Website – secure login, smart tools, OTP system." />
+  <meta name="twitter:image" content="https://jaiminparmar.onrender.com/static/logo.png" />
+
+  <!-- ✅ Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0"></script>
+
+  <!-- ✅ Style -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(115deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9)),
+        url('https://images.unsplash.com/photo-1612831455540-1f0e3a1fcac4') no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      padding: 2rem;
+      border-radius: 20px;
+      text-align: center;
+      color: #fff;
+      animation: fadeIn 1s ease forwards;
+      width: 90%;
+      max-width: 350px;
+    }
+
+    .profile-pic {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #fff;
+      margin-bottom: 1rem;
+      animation: bounceIn 1s ease;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #00ffc3;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+    }
+
+    .summary {
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      opacity: 0.85;
+    }
+
+    input[type="email"] {
+      padding: 10px;
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      margin-bottom: 1rem;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      border: 2px solid #00ffc3;
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    input::placeholder {
+      color: #ccc;
+    }
+
+    button {
+      padding: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      background-color: #00ffc3;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #00cc99;
+    }
+
+    .spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid #fff;
+      border-top: 2px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      display: inline-block;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
+    .footer {
+      margin-top: 1.3rem;
+      font-size: 0.75rem;
+      opacity: 0.75;
+      line-height: 1.5;
+    }
+
+    #typed-text {
+      color: #00ffc3;
+      font-weight: bold;
+      font-size: 1.4rem;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes bounceIn {
+      0% {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+
+      80% {
+        transform: scale(1.05);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="card">
+    <img src="https://i.postimg.cc/2SQYWvJm/cropped-circle-imag.jpg" alt="Profile Photo" class="profile-pic" />
+
+    <h1><span id="typed-text"></span></h1>
+
+    <div class="summary">
+      Welcome to our login page.<br />
+      <strong>Designed by JAIMIN</strong>
+    </div>
+
+    <form method="POST" action="/">
+      <input type="email" id="email" name="email" placeholder="Enter your email" required />
+      <button type="submit" id="submitBtn">
+        <span class="spinner" style="display:none;"></span> 🔐 Send OTP
+      </button>
+    </form>
+
+    <div class="footer">
+      🚀 Privacy focused • One-click email OTP login • No password risk
+    </div>
+  </main>
+
+  <script>
+    // Typed text
+    new Typed('#typed-text', {
+      strings: ["JAIMIN PARMAR's Login"],
+      typeSpeed: 45,
+      backSpeed: 0,
+      loop: false,
+      showCursor: false
+    });
+
+    // Spinner on submit
+    const form = document.querySelector("form");
+    const button = document.getElementById("submitBtn");
+    const spinner = document.querySelector(".spinner");
+
+    form.addEventListener("submit", () => {
+      button.disabled = true;
+      spinner.style.display = "inline-block";
+    });
+
+    // Show confetti if ?sent=true
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('sent') === 'true') {
+      alert("✅ OTP has been sent to your email!");
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+    }
+
+    // Disable right-click
+    document.addEventListener('contextmenu', e => e.preventDefault());
+
+    // Live validation
+    const emailInput = document.getElementById("email");
+    emailInput.addEventListener("input", () => {
+      const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value);
+      emailInput.style.borderColor = valid ? "#00ffc3" : "#ccc";
+    });
+  </script>
+</body>
+
+</html>

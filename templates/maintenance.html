@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ✅ SEO Essentials -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="description" content="Our website is temporarily down for maintenance. We'll be back shortly. Contact: jaiminparmar024@gmail.com" />
+  <meta name="theme-color" content="#00796b" />
+  <title>🚧 Maintenance Mode | Jaimin Parmar</title>
+
+  <!-- ✅ Open Graph -->
+  <meta property="og:title" content="Website Under Maintenance - Jaimin Parmar" />
+  <meta property="og:description" content="We are currently upgrading. Please check back soon!" />
+  <meta property="og:image" content="https://jaiminparmar.onrender.com/static/logo.png" />
+  <meta property="og:url" content="https://jaiminparmar.onrender.com" />
+
+  <!-- ✅ Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Jaimin Parmar",
+    "url": "https://jaiminparmar.onrender.com",
+    "author": {
+      "@type": "Person",
+      "name": "Jaimin Parmar",
+      "email": "mailto:jaiminparmar024@gmail.com"
+    }
+  }
+  </script>
+
+  <!-- ✅ Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #e3f2fd, #e0f7fa);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .container {
+      background: #fff;
+      padding: 50px 35px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      z-index: 2;
+      animation: fadeIn 1s ease;
+      position: relative;
+    }
+
+    .loader {
+      border: 5px solid #e0f2f1;
+      border-top: 5px solid #00796b;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+
+    h1 {
+      color: #00796b;
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    p {
+      color: #444;
+      font-size: 1.1rem;
+      margin-bottom: 25px;
+    }
+
+    .email {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .email a {
+      color: #00796b;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .email a:hover {
+      text-decoration: underline;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Background Elements */
+    .bg-circle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.1;
+      animation: float 6s ease-in-out infinite alternate;
+    }
+
+    .circle1 {
+      width: 150px; height: 150px;
+      background: #00acc1;
+      top: 8%; left: 6%;
+    }
+
+    .circle2 {
+      width: 200px; height: 200px;
+      background: #4dd0e1;
+      bottom: 10%; right: 10%;
+      animation-delay: 2s;
+    }
+
+    @keyframes float {
+      from { transform: translateY(0); }
+      to { transform: translateY(-25px); }
+    }
+
+    @media (max-width: 500px) {
+      h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🔵 Floating Background -->
+  <div class="bg-circle circle1"></div>
+  <div class="bg-circle circle2"></div>
+
+  <!-- 🛠️ Maintenance Box -->
+  <div class="container">
+    <div class="loader"></div>
+    <h1>We're Performing Maintenance</h1>
+    <p>Our site is temporarily down as we upgrade.<br>Thank you for your patience!</p>
+    <div class="email">
+      📧 Contact: <a href="mailto:jaiminparmar024@gmail.com">jaiminparmar024@gmail.com</a>
+    </div>
+  </div>
+
+</body>
+</html>

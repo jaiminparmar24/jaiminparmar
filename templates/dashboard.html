@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🔐 JAIMIN PARMAR | Dream Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- ✅ SEO Meta Tags -->
+  <meta name="description" content="Welcome to JAIMIN PARMAR's Dream Dashboard – a modern and secure Flask-based dashboard with analytics, user tracking, QR generation, and powerful productivity tools.">
+  <meta name="keywords" content="Dream Dashboard, Jaimin Parmar, analytics, user tracking, secure tools, QR generator, flask project, OTP dashboard, productivity dashboard">
+  <meta name="author" content="Jaimin Parmar">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://jaiminparmar.onrender.com/dashboard">
+
+  <!-- ✅ Open Graph -->
+  <meta property="og:title" content="🔐 JAIMIN PARMAR | Dream Dashboard">
+  <!-- ✅ Favicon / Logo -->
+<link rel="icon" href="https://jaiminparmar.onrender.com/static/logo.png" type="image/x-icon">
+
+  <meta property="og:description" content="Explore your secure and interactive Dream Dashboard by Jaimin Parmar – with real-time tracking, QR tools, and more.">
+  <meta property="og:image" content="https://jaiminparmar.onrender.com/static/dashboard-preview.jpg">
+  <meta property="og:url" content="https://jaiminparmar.onrender.com/dashboard">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="JAIMIN PARMAR Dream Dashboard">
+
+  <!-- ✅ Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="🔐 JAIMIN PARMAR | Dream Dashboard">
+  <meta name="twitter:description" content="Track, analyze, and manage with JAIMIN PARMAR's secure Dream Dashboard – real-time tools for modern productivity.">
+  <meta name="twitter:image" content="https://jaiminparmar.onrender.com/static/dashboard-preview.jpg">
+  <meta name="twitter:site" content="@jaiminparmar024">
+
+  <!-- ✅ JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "JAIMIN PARMAR Dream Dashboard",
+    "url": "https://jaiminparmar.onrender.com/dashboard",
+    "description": "Secure Flask-based Dream Dashboard with analytics, QR generation, user tracking, and tools.",
+    "author": {
+      "@type": "Person",
+      "name": "Jaimin Parmar"
+    },
+    "applicationCategory": "ProductivityApplication",
+    "inLanguage": "en"
+  }
+  </script>
+
+
+  <!-- ✅ Icons & Performance -->
+  <link rel="icon" href="https://jaiminparmar.onrender.com/static/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="https://jaiminparmar.onrender.com/static/dashboard-preview.jpg">
+  <link rel="manifest" href="/static/site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="prefetch" href="https://jaiminparmar.onrender.com/static/dashboard-preview.jpg" as="image">
+  <meta name="theme-color" content="#20B2AA">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="msapplication-TileColor" content="#20B2AA">
+
+  <!-- ✅ Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EGSF4CKJMQ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-EGSF4CKJMQ');
+  </script>
+<style>
+/* 🔧 RESET & BASE */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  transition: background-color 0.3s, color 0.3s;
+}
+body.dark-mode {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+/* 🔝 HEADER */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+}
+header h1 {
+  font-size: 1.2rem;
+}
+
+/* 🍔 Menu Toggle (mobile) */
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* 🌐 NAVBAR */
+nav {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  padding: 10px;
+  background-color: #ffffff;
+}
+nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  padding: 10px 15px;
+  transition: 0.3s;
+}
+nav a:hover {
+  background-color: #f0f0f0;
+  border-radius: 6px;
+}
+/* Toggle Button */
+.dropdown-toggle {
+  background: none;
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 10px 15px;
+  cursor: pointer;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+body.dark-mode .dropdown-toggle {
+  color: #f0f0f0;
+}
+
+/* Animated Arrow */
+.arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+.dropdown.open .arrow {
+  transform: rotate(180deg);
+}
+
+/* Animated Slide Submenu */
+.submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+.dropdown.open .submenu {
+  max-height: 500px; /* enough height for links */
+  opacity: 1;
+}
+
+/* 📱 Mobile Nav */
+@media (max-width: 768px) {
+  .submenu {
+    position: static;
+    background: rgba(255,255,255,0.05);
+    box-shadow: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+  nav {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 20px;
+    background-color: #fff;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  nav.nav-visible {
+    display: flex;
+    animation: slideDown 0.3s ease-in-out;
+  }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10%); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* 📦 MAIN CONTAINER */
+.container {
+  padding: 20px;
+}
+.topbar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.right-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+input[type="search"], select {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* 🃏 CARDS */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 15px;
+  margin: 20px 0;
+}
+.card {
+  background: linear-gradient(135deg, #20B2AA, #17a2b8);
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  animation: popIn 0.6s ease;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #00ffcc;
+}
+@keyframes popIn {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* 🔳 QR Section */
+.qr-section {
+  margin: 20px 0;
+}
+.qr-section input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+.qr-section button {
+  margin-top: 10px;
+  padding: 10px;
+  border: none;
+  background: #333;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.qr-section button:hover {
+  background: #555;
+}
+
+/* 🧾 FOOTER */
+footer {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* ⌨️ Typing Animation */
+.typing-text {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid #333;
+  animation: typing 2s steps(30, end), blink 0.75s step-end infinite;
+}
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+/* 🌙 Dark Mode Toggle Switch */
+.toggle-switch {
+  position: relative;
+  width: 50px;
+  height: 24px;
+}
+.toggle-switch input {
+  opacity: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  background-color: #ccc;
+  border-radius: 24px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.4s;
+}
+.slider:before {
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  left: 2px;
+  bottom: 2px;
+  background: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+input:checked + .slider {
+  background-color: #333;
+}
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* 🔔 Toast Notification */
+.toast {
+  background: #333;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+  z-index: 999;
+}
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* 🕓 Clock */
+#clock {
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 10px 0;
+}
+
+
+/* 🔽 Dropdown Container */
+.dropdown {
+  position: relative;
+}
+
+/* 🔽 Submenu Styling */
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: rgba(255, 255, 255, 0.15); /* transparent effect */
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  z-index: 10;
+  min-width: 160px;
+  animation: fadeInSubmenu 0.3s ease-in-out;
+}
+.submenu a {
+  display: block;
+  padding: 10px 15px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+.submenu a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #00ffe1;
+  backdrop-filter: brightness(1.2);
+}
+
+/* 🔽 Show on Hover */
+.dropdown:hover .submenu {
+  display: block;
+}
+
+/* 🌙 Dark Mode Compatibility */
+body.dark-mode .submenu {
+  background: rgba(20, 20, 20, 0.8);
+  color: #f0f0f0;
+}
+body.dark-mode .submenu a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #00ffe1;
+}
+
+/* ✨ Submenu Animation */
+@keyframes fadeInSubmenu {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+  
+  
+</head>
+
+<!-- ... all previous HTML HEAD unchanged ... -->
+
+<body>
+  <header>
+    <h1>JAIMIN PARMAR's Dashboard</h1>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  </header>
+
+  <nav id="mainNav" class="nav-hidden">
+    <a href="#" onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth' });">📘 About Us</a>
+    <a href="#">Dashboard</a>
+    <a href="https://jaiminparmar24.github.io/Password">Contact Us</a>
+    <a href="#" onclick="getLocation()">Your Location</a>
+    <a href="/logout" style="color: red;">Logout</a>
+  </nav>
+
+  <div class="container">
+    <!-- Topbar -->
+    <div class="topbar">
+      <div id="greetingText">Loading...</div>
+      <div class="right-controls">
+        <input type="search" placeholder="Search...">
+        <select>
+          <option>Weekly</option>
+          <option>Monthly</option>
+        </select>
+        <button onclick="document.body.classList.toggle('dark-mode')">🌙 Dark Mode</button>
+        <div id="clockContainer">
+          <div id="clock"></div>
+          <div id="date"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="cards">
+      <div class="card"><h4>Total Users</h4><p id="userCount">0</p></div>
+      <div class="card"><h4>Messages</h4><p id="messageCount">0</p></div>
+      <div class="card"><h4>Visits</h4><p id="visitCount">0</p></div>
+    </div>
+
+    <!-- QR Section -->
+    <h2>⚙️ Features You Can Use</h2>
+    <ul>
+      <li><strong>OTP Login:</strong> Fast and secure login using your email only</li>
+      <li><strong>Last Login Tracking:</strong> Know when and where you last logged in</li>
+      <li><strong>QR Code Generator:</strong> Instantly generate QR codes for any URL</li>
+      <li><strong>Google Sheets Logging:</strong> Keep all your activity securely recorded</li>
+    </ul>
+
+    <div class="qr-section">
+      <h2>🔗 QR Code Generator</h2>
+      <input type="text" id="urlInput" placeholder="Enter URL here">
+      <button onclick="generateQR()">Generate QR</button>
+      <div id="qrResult">
+        <img id="qrImage" style="margin-top:10px; border:1px solid #ccc; padding:5px; max-width:100%;" />
+        <br>
+        <a id="downloadBtn" href="#" download="yourqr.png" style="display:none; margin-top:10px; padding:10px; background:#0077cc; color:white; border-radius:6px; text-decoration:none;">⬇️ Download QR</a>
+      </div>
+    </div>
+
+    <!-- 🎭 Face to Emoji tool MOVED HERE -->
+    <section id="emojiTool" style="padding: 30px; background: #fff3f3; border-radius: 10px; margin-top: 40px;">
+      <h2 style="text-align:center; color:#ff4081;">🎭 Face to Emoji Converter</h2>
+      <p style="text-align:center;">Upload a face photo, and we’ll detect your mood and show the matching emoji!</p>
+      <div style="text-align:center;">
+        <input type="file" accept="image/*" onchange="loadFaceImage(event)" />
+        <br><br>
+        <img id="faceImage" onload="detectFaceExpression()" style="max-width:300px; display:block; margin:auto; border-radius:10px;" />
+        <p id="faceResult" style="font-size:1.4rem; margin-top:10px;"></p>
+      </div>
+    </section>
+
+    <!-- 💬 Testimonials -->
+    <hr style="margin: 40px 0; border-top: 2px solid #ccc;" />
+    <section style="margin-top: 40px;">
+      <h2>🗣️ What Users Say</h2>
+      <blockquote>"This dashboard is clean, fast, and perfect for daily analytics." – Anonymous User</blockquote>
+      <blockquote>"Like the QR feature! Very helpful in college projects." – Dev Student</blockquote>
+    </section>
+
+    <!-- ⛔ Privacy, Help, About, and all other sections follow... -->
+;">
+  <h2>🔒 Your Privacy Matters</h2>
+  <p>
+    This dashboard does not store passwords or sell your data. All login actions are tracked only for security audits and never shared with third parties.
+  </p>
+</section>
+<hr style="margin: 40px 0; border-top: 2px solid #ccc;" />
+
+<section style="margin-top: 40px;">
+  <h2>🛠️ Changelog</h2>
+  <ul>
+    <li>✅ v1.0 – Email OTP login with Google Sheets logging</li>
+    <li>✅ v1.1 – QR Code generator added</li>
+    <li>✅ v1.2 – Location tracker integrated</li>
+    <li>✅ v1.3 – Mobile responsiveness and dark mode enabled</li>
+  </ul>
+</section>
+<hr style="margin: 40px 0; border-top: 2px solid #ccc;" />
+
+
+<section style="margin-top: 40px;">
+  <h2>📩 Need Help?</h2>
+  <p>If you have any issues, contact the developer via <a href="mailto:jaiminparmar024@gmail.com">email</a> or <a href="https://github.com/jaiminparmar24" target="_blank">GitHub</a>.</p>
+</section>
+<hr style="margin: 40px 0; border-top: 2px solid #ccc;" />
+<section style="margin-top: 40px;">
+  <h2>📋 How This Works</h2>
+  <ol>
+    <li>Enter your email to receive a secure OTP</li>
+    <li>Use OTP to login securely (valid for 5 minutes)</li>
+    <li>Access your dashboard and tools instantly</li>
+    <li>Track your session stats in real time</li>
+  </ol>
+</section>
+<hr style="margin: 40px 0; border-top: 2px solid #ccc;" />
+
+<section style="margin-top: 40px;">
+  <h2>📰 Latest Update</h2>
+  <p>June 30, 2025 – Now you can download your QR codes instantly</p>
+    <p>July 06, 2025 – Work Using Google Firebase (For data server)</p>
+</section>
+<hr style="margin: 40px 0; border-top: 2px solid #ccc;" />
+
+<!-- About Us Box with light blue background -->
+<section id="about" style="padding: 20px; background: #eafaff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+  <h2 style="text-align:center; color:#0077cc;">📘 About Us</h2>
+  <p style="font-size: 16px; line-height: 1.7;">
+    This platform is developed and maintained by <strong>Jaimin Parmar</strong> as a part of a secure Productivity
+    toolset. It is a completely free,secure and personalized dashboard experience powered by modern technologies like: 
+  </p>
+  <ul style="padding-left: 20px; margin-top: 10px;">
+    <li>🔐 OTP-based login with session security</li>
+    <li>📊 Real-time analytics, visit tracking, and user statistics</li>
+    <li>📁 Activity logs via Google Sheets (For Developer)</li>
+    <li>📎 QR Code generator and secure shareable links</li>
+    <li>🌙 Dark mode and mobile responsiveness</li>
+  </ul>
+  <p style="margin-top: 15px;">
+    Whether you're testing secure apps or exploring Python (Flask) this dashboard is a live example of perfomance,design
+and usability working together.
+  </p>   
+  <div style="text-align: center; margin-top: 30px;">
+    <h3 style="color: #0077cc;">🏅 Certificate Showcase</h3>
+    <img src="https://i.postimg.cc/bwQjMmbc/Build-Website-With-AI-page-0001.jpg" alt="Certificate" style="max-width: 90%; height: auto; border: 2px solid #ccc; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-top: 15px;">
+   
+  </div>
+
+</section>
+<section id="messageBox" style="margin-top: 50px; padding: 30px; background: #f4f8ff; border-radius: 10px;">
+  <h2 style="text-align: center; color: #0077cc;">📨 Send Me a Message</h2>
+  <form id="messageForm" style="max-width: 600px; margin: auto;">
+    <input type="text" id="name" placeholder="Your Name" required style="width:100%; padding:10px; margin:10px 0;"><br>
+    <input type="email" id="email" placeholder="Your Email" required style="width:100%; padding:10px; margin:10px 0;"><br>
+    <textarea id="message" placeholder="Your Message" rows="5" required style="width:100%; padding:10px; margin:10px 0;"></textarea><br>
+    <button type="submit" style="padding:10px 20px; background-color:#20B2AA; color:white; border:none; border-radius:5px;">📩 Send</button>
+    <p id="responseMsg" style="color:green; margin-top:10px;"></p>
+  </form>
+</section>
+<hr style="margin: 40px 0; border-top: 2px solid #ccc;" />
+
+<script defer src="https://cdn.jsdelivr.net/npm/face-api.js"></script>
+<script>
+  async function detectFaceExpression() {
+    await faceapi.nets.tinyFaceDetector.loadFromUri('/models');
+    await faceapi.nets.faceExpressionNet.loadFromUri('/models');
+
+    const img = document.getElementById('faceImage');
+    const detection = await faceapi.detectSingleFace(img, new faceapi.TinyFaceDetectorOptions()).withFaceExpressions();
+
+    const resultBox = document.getElementById('faceResult');
+
+    if (detection && detection.expressions) {
+      const expressions = detection.expressions;
+      const sorted = Object.entries(expressions).sort((a, b) => b[1] - a[1]);
+      const topExpression = sorted[0][0];
+      const emoji = {
+        happy: "😊", sad: "😢", angry: "😠", surprised: "😲", fearful: "😨", disgusted: "🤢", neutral: "😐"
+      }[topExpression] || "❓";
+
+      resultBox.innerHTML = `Detected: <b>${topExpression}</b> <span style="font-size:2rem">${emoji}</span>`;
+    } else {
+      resultBox.textContent = "😕 No face detected.";
+    }
+  }
+
+  function loadFaceImage(event) {
+    const img = document.getElementById('faceImage');
+    img.src = URL.createObjectURL(event.target.files[0]);
+    document.getElementById("faceResult").textContent = "🔍 Detecting...";
+  }
+</script>
+
+
+
+<!-- Recent Activity moved OUTSIDE to keep white background -->
+<footer>
+  <h3>Recent Activity</h3>
+  <ul id="activityList"></ul>
+</footer>
+
+  </div>
+
+  <script>
+    const email = "{{ email }}";
+    const hour = new Date().getHours();
+    const greetings = {
+      morning: "🌅 Good Morning",
+      afternoon: "🌞 Good Afternoon",
+      evening: "🌙 Good Evening",
+      night: "🌃 Good Night"
+    };
+    const greeting = hour < 12 ? greetings.morning : hour < 18 ? greetings.afternoon : greetings.evening;
+    document.getElementById("greetingText").textContent = `${greeting}, ${email}`;
+
+    function updateClock() {
+      const now = new Date();
+      document.getElementById('clock').textContent = now.toLocaleTimeString();
+      document.getElementById('date').textContent = now.toDateString();
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(pos => {
+          const { latitude, longitude } = pos.coords;
+          window.open(`https://maps.google.com/?q=${latitude},${longitude}`, '_blank');
+        }, () => alert("Location access denied."));
+      } else {
+        alert("Geolocation not supported.");
+      }
+    }
+
+    function randomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    let currentUsers = randomInt(10000, 100000);
+    let currentMessages = randomInt(5000, 80000);
+    let currentVisits = randomInt(50000, 1000000);
+
+    function animateCounter(id, target, duration) {
+      const el = document.getElementById(id);
+      let start = 0;
+      const step = Math.ceil(target / (duration / 10));
+      const counter = setInterval(() => {
+        start += step;
+        if (start >= target) {
+          el.textContent = target.toLocaleString();
+          clearInterval(counter);
+        } else {
+          el.textContent = start.toLocaleString();
+        }
+      }, 10);
+    }
+
+    animateCounter("userCount", currentUsers, 2000);
+    animateCounter("messageCount", currentMessages, 2500);
+    animateCounter("visitCount", currentVisits, 3000);
+
+    setInterval(() => {
+      currentUsers += randomInt(1, 5);
+      currentMessages += randomInt(1, 3);
+      currentVisits += randomInt(5, 15);
+
+      document.getElementById("userCount").textContent = currentUsers.toLocaleString();
+      document.getElementById("messageCount").textContent = currentMessages.toLocaleString();
+      document.getElementById("visitCount").textContent = currentVisits.toLocaleString();
+    }, 3000);
+
+    const activities = ["User logged in", "New file uploaded", "Settings updated", "Feedback submitted", "Comment received", "Security alert"];
+    const activityList = document.getElementById("activityList");
+
+    function updateActivityFeed() {
+      activityList.innerHTML = "";
+      for (let i = 0; i < 5; i++) {
+        const li = document.createElement("li");
+        li.textContent = `${activities[randomInt(0, activities.length - 1)]} - ${randomInt(1, 59)} mins ago`;
+        activityList.appendChild(li);
+      }
+    }
+    updateActivityFeed();
+    setInterval(updateActivityFeed, 15000);
+
+    function generateQR() {
+      const url = document.getElementById("urlInput").value;
+      if (!url) {
+        alert("Please enter a URL.");
+        return;
+      }
+      fetch("/generate_qr", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: "url=" + encodeURIComponent(url)
+      })
+      .then(response => response.blob())
+    .then(blob => {
+  const imgUrl = URL.createObjectURL(blob);
+  const qrImg = document.getElementById("qrImage");
+  qrImg.src = imgUrl;
+
+  const downloadLink = document.getElementById("downloadBtn");
+  downloadLink.href = imgUrl;
+  downloadLink.style.display = "inline-block";
+})
+
+      .catch(() => alert("QR generation failed."));
+    }
+
+    function toggleMenu() {
+      const nav = document.getElementById('mainNav');
+      nav.classList.toggle('nav-visible');
+      nav.classList.toggle('nav-hidden');
+    }
+  </script>
+
+  
+
+
+<p style="text-align:center; font-size:14px; color:#999;">
+  Crafted by Jaimin Parmar | Powered by Flask & Google Sheets
+</p>
+<script>
+  // Disable right-click
+  document.addEventListener('contextmenu', function (e) {
+    e.preventDefault();
+  });
+</script>
+
+<!-- Load Firebase SDKs -->
+<script type="module">
+  // ✅ Import the Firebase modules
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  // ✅ Your Firebase Config
+  const firebaseConfig = {
+    apiKey: "AIzaSyC_EcUgTxTv6IP7l2jcMkaUIcBhu5aevK0",
+    authDomain: "dream-website-data.firebaseapp.com",
+    projectId: "dream-website-data",
+    storageBucket: "dream-website-data.firebasestorage.app",
+    messagingSenderId: "659343009191",
+    appId: "1:659343009191:web:ba6bad85f3fda9416c8282",
+    measurementId: "G-SKLYY6SBL9"
+  };
+
+  // ✅ Initialize Firebase and Firestore
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // ✅ Form submission
+  document.getElementById("messageForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("message").value;
+
+    try {
+      await addDoc(collection(db, "contactMessages"), {
+        name,
+        email,
+        message,
+        timestamp: serverTimestamp()
+      });
+      document.getElementById("responseMsg").textContent = "✅ Message sent successfully!";
+      document.getElementById("messageForm").reset();
+    } catch (error) {
+      console.error("Error sending message: ", error);
+      document.getElementById("responseMsg").textContent = "❌ Failed to send. Try again.";
+    }
+  });
+</script>
+<script>
+  document.querySelectorAll('.dropdown-toggle').forEach(button => {
+    button.addEventListener('click', () => {
+      const dropdown = button.closest('.dropdown');
+      dropdown.classList.toggle('open');
+    });
+  });
+</script>
+
+</body>
+</html>
