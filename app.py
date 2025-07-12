@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, redirect, url_for, session, send_from_directory, send_file, make_response
+from flask import Flask, render_template, request, redirect, url_for, session, send_from_directory, send_file
+from flask_mail import Mail, Message
 
 import pytz
 import random
@@ -22,13 +23,11 @@ def robots():
 def sitemap():
     return send_from_directory("static", "sitemap.xml")
 
-# ✅ Maintenance Mode with 503 and Retry-After
+# ✅ Maintenance Mode
 @app.before_request
 def check_maintenance():
     if os.environ.get('MAINTENANCE_MODE') == 'on' and request.endpoint != 'maintenance':
-        response = make_response(render_template('maintenance.html'), 503)
-        response.headers['Retry-After'] = '3600'  # seconds (1 hour)
-        return response
+        return render_template('maintenance.html'), 503
 
 # ✅ Mail Configuration
 app.config.update(
