@@ -1,3 +1,18 @@
+# ✅ Allow all bots
 User-agent: *
+Disallow:
+
+# ✅ Specifically allow BraveBot
+User-agent: BraveBot
 Allow: /
+
+# ✅ Specifically allow Googlebot
+User-agent: Googlebot
+Allow: /
+
+# ✅ Specifically allow Bingbot
+User-agent: Bingbot
+Allow: /
+
+# ✅ Sitemap location
 Sitemap: https://jaiminparmar.onrender.com/sitemap.xml
