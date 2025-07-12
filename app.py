@@ -1,5 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, send_from_directory, send_file
-from flask_mail import Mail, Message
+from flask import Flask, render_template, request, redirect, url_for, session, send_from_directory, send_file, make_response
 
 import pytz
 import random
@@ -30,6 +29,7 @@ def check_maintenance():
         response = make_response(render_template('maintenance.html'), 503)
         response.headers['Retry-After'] = '3600'  # seconds (1 hour)
         return response
+
 # ✅ Mail Configuration
 app.config.update(
     MAIL_SERVER='smtp.gmail.com',
