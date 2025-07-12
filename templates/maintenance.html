@@ -1,52 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- ✅ SEO Essentials -->
+  <!-- ✅ Basic Meta -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <meta name="description" content="Our website is temporarily down for maintenance. We'll be back shortly. Contact: jaiminparmar024@gmail.com" />
   <meta name="theme-color" content="#00796b" />
-  <meta http-equiv="Retry-After" content="3600"> <!-- 1 hour hint -->
+  <meta http-equiv="Retry-After" content="3600" />
+  <link rel="canonical" href="https://jaiminparmar.onrender.com/" />
+  <meta name="language" content="en" />
+  <meta name="geo.region" content="IN" />
+  <meta name="geo.placename" content="India" />
+  <meta name="geo.position" content="23.0225;72.5714" />
+  <meta name="ICBM" content="23.0225, 72.5714" />
 
   <title>🚧 Maintenance Mode | Jaimin Parmar</title>
 
   <!-- ✅ Open Graph -->
+  <meta property="og:locale" content="en_IN" />
+  <meta property="og:type" content="website" />
   <meta property="og:title" content="Website Under Maintenance - Jaimin Parmar" />
   <meta property="og:description" content="We are currently upgrading. Please check back soon!" />
-  <meta property="og:image" content="https://jaiminparmar.onrender.com/static/logo.png" />
   <meta property="og:url" content="https://jaiminparmar.onrender.com" />
+  <meta property="og:image" content="https://jaiminparmar.onrender.com/static/logo.png" />
+  <meta property="og:site_name" content="Jaimin Parmar" />
+  <meta property="article:publisher" content="https://www.facebook.com/yourprofile" />
 
-  <!-- ✅ Schema.org -->
+  <!-- ✅ Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Website Under Maintenance - Jaimin Parmar" />
+  <meta name="twitter:description" content="We are currently upgrading. Please check back soon!" />
+  <meta name="twitter:image" content="https://jaiminparmar.onrender.com/static/logo.png" />
+  <meta name="twitter:site" content="@jaiminparmar" />
+  <meta name="twitter:creator" content="@jaiminparmar" />
+
+  <!-- ✅ Google / Bing Verification (optional) -->
+  <meta name="google-site-verification" content="YOUR-GOOGLE-CODE-HERE" />
+  <meta name="msvalidate.01" content="YOUR-BING-CODE-HERE" />
+
+  <!-- ✅ Schema.org Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Jaimin Parmar",
-    "url": "https://jaiminparmar.onrender.com",
-    "author": {
-      "@type": "Person",
-      "name": "Jaimin Parmar",
-      "email": "mailto:jaiminparmar024@gmail.com"
-    }
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://jaiminparmar.onrender.com/#website",
+        "url": "https://jaiminparmar.onrender.com",
+        "name": "Jaimin Parmar",
+        "author": {
+          "@type": "Person",
+          "name": "Jaimin Parmar",
+          "email": "mailto:jaiminparmar024@gmail.com"
+        },
+        "inLanguage": "en",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Jaimin Parmar",
+          "url": "https://jaiminparmar.onrender.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://jaiminparmar.onrender.com/static/logo.png"
+          }
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://jaiminparmar.onrender.com/#webpage",
+        "url": "https://jaiminparmar.onrender.com",
+        "name": "Maintenance Mode",
+        "description": "This site is temporarily under maintenance. We'll be back shortly.",
+        "isPartOf": { "@id": "https://jaiminparmar.onrender.com/#website" },
+        "dateModified": "2025-07-12",
+        "inLanguage": "en"
+      }
+    ]
   }
   </script>
 
-  <!-- ✅ Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3TKXF0GDQE"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-3TKXF0GDQE');
-  </script>
-
-  <!-- ✅ Font Preconnect for Speed -->
+  <!-- ✅ Font Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-  <style>
+  <!-- ✅ Add your full CSS & body here (unchanged from your design) -->
+   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Poppins', sans-serif;
@@ -119,9 +158,14 @@
     }
 
     .countdown {
-      margin: 20px 0;
+      margin: 20px 0 10px;
       font-weight: bold;
       color: #00695c;
+    }
+
+    .meta-status {
+      font-size: 0.85rem;
+      color: #777;
     }
 
     .btn-home {
@@ -182,6 +226,8 @@
   </style>
 </head>
 <body>
+  <!-- 🔧 Your existing loader, container, countdown, and script code stays same here -->
+
 
   <!-- 🔵 Floating Background -->
   <div class="bg-circle circle1"></div>
@@ -192,15 +238,21 @@
     <div class="loader"></div>
     <h1>We're Performing Maintenance</h1>
     <p>Our site is temporarily down as we upgrade.<br>Thank you for your patience!</p>
+
     <div class="countdown">Estimated Recovery: <span id="timer">59:59</span> minutes</div>
+    <div class="meta-status">
+      Incident ID: #MNT-0725 • Version: 1.3.2 • Ping: <span id="pingTime">--:--:--</span>
+    </div>
+
     <div class="email">
       📧 Contact: <a href="mailto:jaiminparmar024@gmail.com">jaiminparmar024@gmail.com</a>
     </div>
+
     <button class="btn-home" onclick="location.reload()">🔁 Retry Now</button>
   </div>
 
   <script>
-    // Simple 1-hour countdown
+    // Countdown Timer
     let minutes = 59;
     let seconds = 59;
     const timer = document.getElementById("timer");
@@ -215,7 +267,19 @@
       }
       timer.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
     }, 1000);
+
+    // Ping Clock
+    function updatePingTime() {
+      const now = new Date();
+      const time = now.toLocaleTimeString();
+      document.getElementById("pingTime").textContent = time;
+    }
+    updatePingTime();
+    setInterval(updatePingTime, 60000);
   </script>
+
+
+
 
 </body>
 </html>
