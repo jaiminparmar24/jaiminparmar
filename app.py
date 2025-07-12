@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session, send_from_directory, send_file, make_response
-
+from flask_mail import Mail, Message
 
 import pytz
 import random
