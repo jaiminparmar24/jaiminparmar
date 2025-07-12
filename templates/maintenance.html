@@ -7,6 +7,8 @@
   <meta name="robots" content="noindex, nofollow" />
   <meta name="description" content="Our website is temporarily down for maintenance. We'll be back shortly. Contact: jaiminparmar024@gmail.com" />
   <meta name="theme-color" content="#00796b" />
+  <meta http-equiv="Retry-After" content="3600"> <!-- 1 hour hint -->
+
   <title>🚧 Maintenance Mode | Jaimin Parmar</title>
 
   <!-- ✅ Open Graph -->
@@ -29,22 +31,23 @@
     }
   }
   </script>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-3TKXF0GDQE"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-3TKXF0GDQE');
-</script>
+  <!-- ✅ Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3TKXF0GDQE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-3TKXF0GDQE');
+  </script>
 
-  <!-- ✅ Fonts -->
+  <!-- ✅ Font Preconnect for Speed -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     body {
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(to right, #e3f2fd, #e0f7fa);
@@ -54,6 +57,17 @@
       height: 100vh;
       text-align: center;
       overflow: hidden;
+      transition: background 0.3s ease;
+    }
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #121212;
+        color: #eee;
+      }
+      .container {
+        background: #1e1e1e;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      }
     }
 
     .container {
@@ -102,6 +116,28 @@
 
     .email a:hover {
       text-decoration: underline;
+    }
+
+    .countdown {
+      margin: 20px 0;
+      font-weight: bold;
+      color: #00695c;
+    }
+
+    .btn-home {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #00796b;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .btn-home:hover {
+      background-color: #004d40;
     }
 
     @keyframes spin {
@@ -156,10 +192,30 @@
     <div class="loader"></div>
     <h1>We're Performing Maintenance</h1>
     <p>Our site is temporarily down as we upgrade.<br>Thank you for your patience!</p>
+    <div class="countdown">Estimated Recovery: <span id="timer">59:59</span> minutes</div>
     <div class="email">
       📧 Contact: <a href="mailto:jaiminparmar024@gmail.com">jaiminparmar024@gmail.com</a>
     </div>
+    <button class="btn-home" onclick="location.reload()">🔁 Retry Now</button>
   </div>
+
+  <script>
+    // Simple 1-hour countdown
+    let minutes = 59;
+    let seconds = 59;
+    const timer = document.getElementById("timer");
+
+    setInterval(() => {
+      if (seconds === 0) {
+        if (minutes === 0) return;
+        minutes--;
+        seconds = 59;
+      } else {
+        seconds--;
+      }
+      timer.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }, 1000);
+  </script>
 
 </body>
 </html>
