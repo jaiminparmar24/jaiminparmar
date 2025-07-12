@@ -11,7 +11,7 @@ from datetime import datetime
 import qrcode
 import io
 
-app = Flask(_name_)
+app = Flask(__name__)  # ✅ Fixed
 app.secret_key = 'supersecretkey'
 
 # ✅ Robots.txt and Sitemap.xml Routes
@@ -76,10 +76,10 @@ def update_last_login(email):
 def send_to_google_script(email, status):
     try:
         url = "https://script.google.com/macros/s/AKfycbye0Ky4KMKw1O3oQj3ctxqpDPyIZu8PyEn8mt7pQOUiLkqvSZ4OUi-oshm2XEUs8PdMjw/exec"
-        login_time = session.get('login_time') or datetime.now(pytz.timezone("Asia/Kolkata"))
+        login_time = session.get('login_time') or datetime.now(pytz.timezone("Asia/Kolkata")).strftime('%Y-%m-%d %H:%M:%S')
         data = {
             "email": email,
-            "time": login_time.strftime("%Y-%m-%d %H:%M:%S"),
+            "time": login_time,
             "status": status
         }
         requests.post(url, json=data)
@@ -132,7 +132,7 @@ def send_otp(email):
       <p>Enter this OTP to continue:</p>
       <div class="otp-box">{otp}</div>
       <p>This OTP is valid for 5 minutes.</p>
-        <p>If you didn’t request this, you can safely ignore this email.</p>
+      <p>If you didn’t request this, you can safely ignore this email.</p>
       <div class="footer">Securely sent by JAIMIN 🚀</div>
     </div></body></html>"""
 
@@ -181,7 +181,7 @@ def verify():
             session.update({
                 'verified': True,
                 'logged_in': True,
-                'login_time': datetime.now(pytz.timezone("Asia/Kolkata")),
+                'login_time': datetime.now(pytz.timezone("Asia/Kolkata")).strftime('%Y-%m-%d %H:%M:%S'),
                 'ip': request.remote_addr,
                 'browser': request.user_agent.string
             })
@@ -192,7 +192,6 @@ def verify():
             return render_template('verify.html', error="Invalid OTP. Try again!")
 
     return render_template('verify.html')
-
 
 @app.route('/dashboard')
 def dashboard():
@@ -205,7 +204,7 @@ def dashboard():
 @app.route('/logout')
 def logout():
     email = session.get('email', 'Unknown')
-    session['login_time'] = datetime.now(pytz.timezone("Asia/Kolkata"))
+    session['login_time'] = datetime.now(pytz.timezone("Asia/Kolkata")).strftime('%Y-%m-%d %H:%M:%S')
     send_to_google_script(email, "Logout")
     session.clear()
     return redirect(url_for('login'))
@@ -225,7 +224,6 @@ def resend_otp():
     except Exception as e:
         return f"Failed to resend OTP: {str(e)}", 500
 
-
 # ✅ QR Code Generator Route
 @app.route('/generate_qr', methods=['POST'])
 def generate_qr():
@@ -233,7 +231,6 @@ def generate_qr():
     if not url:
         return "No URL provided", 400
 
-    # Generate QR Code
     qr = qrcode.QRCode(
         version=1,
         error_correction=qrcode.constants.ERROR_CORRECT_H,
@@ -244,15 +241,13 @@ def generate_qr():
     qr.make(fit=True)
     img = qr.make_image(fill_color="black", back_color="white")
 
-    # Save to memory buffer
     buf = io.BytesIO()
     img.save(buf)
     buf.seek(0)
 
-    # Optional Google Sheet logging (you can use same or separate sheet)
     try:
         requests.post(
-            "https://script.google.com/macros/s/YOUR_SECOND_SCRIPT_ID/exec",  # Optional logging
+            "https://script.google.com/macros/s/YOUR_SECOND_SCRIPT_ID/exec",
             json={
                 "url": url,
                 "ip": request.remote_addr
@@ -263,5 +258,6 @@ def generate_qr():
 
     return send_file(buf, mimetype='image/png')
 
-if _name_ == '_main_':
+# ✅ App Run
+if __name__ == '__main__':  # ✅ Fixed
     app.run(debug=True)
