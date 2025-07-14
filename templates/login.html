@@ -6,25 +6,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>🔐 JAIMIN PARMAR | Dream Website</title>
-  <link rel="icon" href="https://jaiminparmar.onrender.com/static/logo.png" type="image/png" />
+
+  <!-- ✅ Favicon -->
+  <link rel="icon" href="https://jaiminparmar.onrender.com/static/logo512.jpg" type="image/jpeg" sizes="512x512" />
 
   <!-- ✅ SEO Meta -->
-  <meta name="description" content="JAIMIN PARMAR's Dream Website – a secure OTP login portal with smart tools.">
-  <meta name="keywords" content="OTP login, secure, email authentication, flask, jaimin parmar, jaimin parmar dream website , dreamsite, jaimin parmar  dreamsite" />
+  <meta name="description" content="JAIMIN PARMAR's Dream Website – a secure OTP login portal with smart tools." />
+  <meta name="keywords" content="OTP login, secure, email authentication, flask, jaimin parmar, jaimin parmar dream website , dreamsite, jaimin parmar dreamsite" />
   <meta name="author" content="Jaimin Parmar" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://jaiminparmar.onrender.com/" />
 
-  <!-- ✅ Open Graph + Twitter -->
+  <!-- ✅ Open Graph (Facebook, WhatsApp) -->
   <meta property="og:title" content="🔐 JAIMIN PARMAR | Dream Website" />
   <meta property="og:description" content="Secure OTP login portal with Password Manager and more tools." />
-  <meta property="og:image" content="https://jaiminparmar.onrender.com/static/logo.png" />
+  <meta property="og:image" content="https://jaiminparmar.onrender.com/static/logo512.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="512" />
+  <meta property="og:image:height" content="512" />
   <meta property="og:url" content="https://jaiminparmar.onrender.com/" />
   <meta property="og:type" content="website" />
+
+  <!-- ✅ Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="JAIMIN PARMAR | Dream Website" />
   <meta name="twitter:description" content="Explore JAIMIN's Dream Website – secure login, smart tools, OTP system." />
-  <meta name="twitter:image" content="https://jaiminparmar.onrender.com/static/logo.png" />
+  <meta name="twitter:image" content="https://jaiminparmar.onrender.com/static/logo512.jpg" />
+
+  <!-- ✅ Search Engine Verification -->
+  <meta name="google-site-verification" content="5Q2w2DNziS6aGw83dWomTOjfuIDMzY26NkFmeCWxjFA" />
+  <meta name="msvalidate.01" content="5415B08FCC9D95909C98A1DBD05C2AC2" />
 
   <!-- ✅ Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
@@ -182,8 +193,6 @@
       }
     }
   </style>
-  <meta name="google-site-verification" content="5Q2w2DNziS6aGw83dWomTOjfuIDMzY26NkFmeCWxjFA" />
-  <meta name="msvalidate.01" content="5415B08FCC9D95909C98A1DBD05C2AC2" />
 </head>
 
 <body>
@@ -208,22 +217,51 @@
       🚀 Privacy focused • One-click email OTP login • No password risk
     </div>
   </main>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Jaimin Parmar",
-  "url": "https://jaiminparmar.onrender.com/",
-  "author": {
-    "@type": "Person",
-    "name": "Jaimin Parmar"
-  },
-  "description": "Portfolio and tool website of Jaimin Parmar with developer utilities like Secure otp login, dreamsite, QR Code Generator."
-}
-</script>
 
+  <!-- ✅ Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "Jaimin Parmar",
+        "url": "https://jaiminparmar.onrender.com/",
+        "author": {
+          "@type": "Person",
+          "name": "Jaimin Parmar"
+        },
+        "description": "Portfolio and tool website of Jaimin Parmar with developer utilities like Secure OTP login, Dreamsite, QR Code Generator."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://jaiminparmar.onrender.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "QR Generator",
+            "item": "https://jaiminparmar.onrender.com/generate_qr"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Password Manager",
+            "item": "https://jaiminparmar.onrender.com/password-manager"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- ✅ Typed Text, Spinner, Confetti -->
   <script>
-    // Typed text
     new Typed('#typed-text', {
       strings: ["JAIMIN PARMAR's Login"],
       typeSpeed: 45,
@@ -232,7 +270,6 @@
       showCursor: false
     });
 
-    // Spinner on submit
     const form = document.querySelector("form");
     const button = document.getElementById("submitBtn");
     const spinner = document.querySelector(".spinner");
@@ -242,7 +279,6 @@
       spinner.style.display = "inline-block";
     });
 
-    // Show confetti if ?sent=true
     const params = new URLSearchParams(window.location.search);
     if (params.get('sent') === 'true') {
       alert("✅ OTP has been sent to your email!");
@@ -253,67 +289,22 @@
       });
     }
 
-    // Disable right-click
     document.addEventListener('contextmenu', e => e.preventDefault());
 
-    // Live validation
     const emailInput = document.getElementById("email");
     emailInput.addEventListener("input", () => {
       const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value);
       emailInput.style.borderColor = valid ? "#00ffc3" : "#ccc";
     });
   </script>
- <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebSite",
-      "name": "Jaimin Parmar",
-      "url": "https://jaiminparmar.onrender.com/",
-      "author": {
-        "@type": "Person",
-        "name": "Jaimin Parmar"
-      },
-      "description": "Portfolio and tool website of Jaimin Parmar with developer utilities like Secure OTP login, Dreamsite, QR Code Generator."
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://jaiminparmar.onrender.com/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "QR Generator",
-          "item": "https://jaiminparmar.onrender.com/generate_qr"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Password Manager",
-          "item": "https://jaiminparmar.onrender.com/password-manager"
-        }
-      ]
-    }
-  ]
-}
-</script>
 
-
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-3TKXF0GDQE"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-3TKXF0GDQE');
-</script>
+  <!-- ✅ Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3TKXF0GDQE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-3TKXF0GDQE');
+  </script>
 </body>
-
 </html>
