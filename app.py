@@ -105,7 +105,7 @@ def send_otp(email):
     msg = Message(
         subject=subject,
         recipients=[email],
-        reply_to="noreply@example.com",
+        reply_to="jaiminparmar024@gmail.com",
         extra_headers={"X-Priority": "1", "X-MSMail-Priority": "High"}
     )
 
